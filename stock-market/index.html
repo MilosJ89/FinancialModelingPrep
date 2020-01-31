@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stock Market</title>
+<!-- Css -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+
+<body onload="clock()">
+    <header>
+        <p id="logo" onclick="openHome()">FMP</p>
+        <p>Financial Modeling Prep</p>
+        <p id="clock"></p>
+        <p id="time"></p>
+    </header>
+    <div class="ticker-wrap"></div>
+    <ul>
+        <li><a class="btn active disable" href="#home" onclick="openHome()">Home</a></li>
+        <li><a class="btn" href="#companies" onclick="openCompanies()">Companies</a></li>
+        <li><a class="btn" href="#cryptoCurrency" onclick="openCryptoCurrencies()">Crypto Currencies</a></li>
+        <li><a class="btn" href="#currency" onclick="openCurrencies()">Currencies</a></li>
+        <li><a class="btn" href="#about">About</a></li>
+    </ul>
+    <table id="table"></table>
+    <!-- Javascript -->
+    <script src="/js/pages/home.js"></script>
+    <script src="/js/pages/currencies.js"></script>
+    <script src="/js/pages/cryptoCurrencies.js"></script>
+    <script src="/js/pages/companies.js"></script>
+    <script src="/js/components/table.js"></script>
+    <script src="/js/components/majorIndex.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
