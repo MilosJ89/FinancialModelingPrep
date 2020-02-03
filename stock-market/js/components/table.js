@@ -1,4 +1,10 @@
-const table = document.getElementById('table');
+function createContent() {
+    const content = document.getElementById('content');
+
+        const table = document.createElement('table');
+        table.setAttribute('id', 'table');
+        content.appendChild(table);
+}
 
 //Create header of table
 async function createHeader(arrayHeader, items) {
@@ -30,6 +36,9 @@ async function createHeader(arrayHeader, items) {
                 case 'Company':
                 case 'Website':
                 case 'Name':
+                case 'Country':
+                case 'Currency':
+                case 'Exchange':
                     arrowDownSpan.style.display = 'none';
                     break;
                 default:

@@ -48,8 +48,9 @@ for(let i=0; i < btns.length; i++) {
 
 //Open page with companies
 function openCompanies() {
-    table.innerHTML = '';
-    // paragraph.innerHTML = '';
+    content.innerHTML = '';
+
+    createContent();
 
     companies()
         .then(createHeader.bind(null, headerCompanies))
@@ -58,17 +59,31 @@ function openCompanies() {
 
 //Open page with crypto currencies
 function openCryptoCurrencies() {
-    table.innerHTML = '';
-    // paragraph.innerHTML = '';
+    content.innerHTML = '';
+
+    createContent();
 
     cryptoCurrencies()
         .then(createHeader.bind(null, headerCryptoCurrencies))
         .then(createContentCryptoCurrrencies);
 }
 
+//Open page with currencies
+function openCurrencies() {
+    content.innerHTML = '';
+
+    createContent();
+
+    currencies()
+        .then(createHeader.bind(null, headerCurrencies))
+        .then(createContentCurrencies);
+    
+    createFormConverter();
+}
+
 //Sort companies per price
 function sortPerPrice() {
-    table.innerHTML = '';
+    content.innerHTML = '';
 
     createHeader(headerCompanies);
     createContentCompanies(sortedCompanies('price'));
@@ -76,7 +91,7 @@ function sortPerPrice() {
 
 //Sort companies per changes
 function sortPerChanges() {
-    table.innerHTML = '';
+    content.innerHTML = '';
 
     createHeader(headerCompanies);
     createContentCompanies(sortedCompanies('changes'));
