@@ -25,10 +25,9 @@ const headerCompanies = [
 ];
 
 /**
- * 
  * Create array with objects of copanies from api
  * 
- * @returns {any[]}
+ * @returns {object[]}
  */
 async function companies() {
     const symbols = ['spy','t','kmi','intc','mu','gdx','ge','seb','eem','ghc','aapl','msft','siri','hpq','cx','efa','amd','snap','fb','orcl'];
@@ -44,9 +43,7 @@ async function companies() {
 }
 
 /**
- * 
  * Create content table of companies
- * 
  */
 function createContentCompanies() {
     for(let company of arrayCompanies) {
@@ -86,7 +83,6 @@ function createContentCompanies() {
 }
 
 /**
- * 
  * Sorted companies by fields
  * 
  * @param {string} field

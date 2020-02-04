@@ -7,16 +7,12 @@
  */
 
 /**
- * 
  * Array with tags of currencies
- * 
  */
 const arrayCurrencies = ['EUR', 'USD', 'JPY', 'GBP', 'CHF', 'CAD', 'AUD', 'RUB', 'CNY', 'SEK', 'AED', 'INR', 'EGP', 'NOK'];
 
 /**
- * 
  * Array with names of currencies by countries
- * 
  */
 const countries = {
     EUR: 'Euro',
@@ -36,16 +32,14 @@ const countries = {
 }
 
 /**
- * 
  * Array with objects of currencies information
  * 
+ * @type {object[]}
  */
 let forexEur = [];
 
 /**
- * 
  * Array of header currencies with fields and titles
- * 
  */
 const headerCurrencies = [
     { field: 'country', title: 'Country'},
@@ -54,9 +48,7 @@ const headerCurrencies = [
 ]
 
 /**
- * 
  * Create content table of currencies
- * 
  */
 function createContentCurrencies() {
     for(let currency of arrayCurrencies) {
@@ -96,9 +88,7 @@ function createContentCurrencies() {
 }
 
 /**
- * 
  * Create converter for convert one currency to another currency
- * 
  */
 function createFormConverter () {
     let form = document.createElement('div');
@@ -153,9 +143,7 @@ function createFormConverter () {
 }
 
 /**
- * 
  * Function for convert one currency to another currency
- * 
  */
 async function convertCurrencies() {
     let from = document.getElementById('selectFrom');
@@ -170,9 +158,7 @@ async function convertCurrencies() {
 }
 
 /**
- * 
  * Create array with currencies information for currency euro
- * 
  */
 async function currencies() {
     let baseUrl = 'https://api.exchangerate-api.com/v4/latest/'
@@ -182,7 +168,6 @@ async function currencies() {
 
 
 /**
- * 
  * Visibility information name of curencies when mouseover across flag in table
  * 
  * @param {string} currency 
@@ -200,7 +185,6 @@ function currencyInfo(currency) {
 }
 
 /**
- * 
  * Visibility hidden information name of currencies when mouseout acrros flag in table
  * 
  * @param {string} currency 

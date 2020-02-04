@@ -6,11 +6,8 @@
  * @author Milos Jovanovic
  */
 
-
  /**
-  * 
   * Create home page with image and paragraph
-  * 
   */
 function openHome() {
     content.innerHTML = '';

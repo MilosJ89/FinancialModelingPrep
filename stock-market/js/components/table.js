@@ -10,7 +10,7 @@
  * Function for create header of table
  * 
  * @param {string[]} arrayHeader 
- * @param {any[]} items
+ * @param {object[]} items
  * 
  * @returns {type}
  */
@@ -60,7 +60,6 @@ async function createHeader(arrayHeader, items) {
 
 /**
  * Function for create table at DOM
- * 
  */
 function createTable() {
     const content = document.getElementById('content');

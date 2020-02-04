@@ -7,9 +7,7 @@
  */
 
 /**
- * 
  * Change active buttons by open page
- * 
  */
 const btns = document.getElementsByClassName('btn');
 
@@ -22,9 +20,7 @@ for(let i=0; i < btns.length; i++) {
 }
 
 /**
- * 
  * Date in header
- * 
  */
 let time = document.getElementById('time');
 let date = new Date();
@@ -43,9 +39,7 @@ if(month < 10) {
 time.innerHTML = day + '.' + ' ' + month + '.' + ' ' + year + '.';
 
 /**
- * 
  * Create time in header
- * 
  */
 function clock() {
     let clcokTime = document.getElementById('clock');
@@ -67,9 +61,7 @@ function clock() {
 }
 
 /**
- * 
  * Open page with companies when click on tab companies in sidebar
- * 
  */
 function openCompanies() {
     content.innerHTML = '';
@@ -82,9 +74,7 @@ function openCompanies() {
 }
 
 /**
- * 
  * Open page with crypto currencies when click on tab crypto currencies in sidebar
- * 
  */
 function openCryptoCurrencies() {
     content.innerHTML = '';
@@ -97,9 +87,7 @@ function openCryptoCurrencies() {
 }
 
 /**
- * 
  * Open page with currencies when click on tab currencies in sidebar
- * 
  */
 function openCurrencies() {
     content.innerHTML = '';
@@ -114,9 +102,7 @@ function openCurrencies() {
 }
 
 /**
- * 
  * Sort companies in table by changes
- * 
  */
 function sortPerChanges() {
     content.innerHTML = '';
@@ -128,9 +114,7 @@ function sortPerChanges() {
 }
 
 /**
- * 
  * Sort companies in table by changes percentage
- * 
  */
 function sortPerChangesPercentage() {
     content.innerHTML = '';
@@ -142,9 +126,7 @@ function sortPerChangesPercentage() {
 }
 
 /**
- * 
- * Sort companies in table by price
- *  
+ * Sort companies in table by price 
  */
 function sortPerPrice() {
     content.innerHTML = '';

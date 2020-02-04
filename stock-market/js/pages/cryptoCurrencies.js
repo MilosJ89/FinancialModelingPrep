@@ -22,9 +22,7 @@ const headerCryptoCurrencies = [
 ]
 
 /**
- * 
  * Function for create content table of crypto currencies
- * 
  */
 function createContentCryptoCurrrencies() {
     for(let crypto of arrayCryptoCurrencies) {
@@ -57,9 +55,7 @@ function createContentCryptoCurrrencies() {
 }
 
 /**
- * 
  * Create array of crypto currencies by api
- * 
  */
 async function cryptoCurrencies() {
     let result = await fetch('https://financialmodelingprep.com/api/v3/cryptocurrencies');
