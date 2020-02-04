@@ -8,12 +8,16 @@
 
 
 /**
- * Array of companies
+ * Get information of companies by api
+ * 
+ * @type {object[]}
  */
 const arrayCompanies = [];
 
 /**
  * Array of header companies with fields and titles
+ * 
+ * @type {object[]}
  */
 const headerCompanies = [ 
     { field: 'image', title: ''},
@@ -88,7 +92,7 @@ function createContentCompanies() {
  * @param {string} field
  * 
  * Return array with sorted companies
- * @returns {any[]}
+ * @returns {object[]}
  */
 function sortedCompanies(field) {
     

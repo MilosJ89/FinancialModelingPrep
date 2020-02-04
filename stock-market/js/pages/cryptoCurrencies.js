@@ -7,12 +7,16 @@
  */
 
 /**
- * Array of crypto currencies
+ * @type {object[]}
+ * 
+ * Get crypto currencies from api
  */
 const arrayCryptoCurrencies = [];
 
 
 /**
+ * @type {object[]}
+ * 
  * Array of header crypto currencies with fields and titles
  */
 const headerCryptoCurrencies = [

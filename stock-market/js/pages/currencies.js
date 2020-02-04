@@ -8,11 +8,15 @@
 
 /**
  * Array with tags of currencies
+ * 
+ * @type {string[]}
  */
 const arrayCurrencies = ['EUR', 'USD', 'JPY', 'GBP', 'CHF', 'CAD', 'AUD', 'RUB', 'CNY', 'SEK', 'AED', 'INR', 'EGP', 'NOK'];
 
 /**
- * Array with names of currencies by countries
+ * Object with names of currencies by tags of currencies
+ * 
+ * @type {object}
  */
 const countries = {
     EUR: 'Euro',
@@ -40,6 +44,8 @@ let forexEur = [];
 
 /**
  * Array of header currencies with fields and titles
+ * 
+ * @type {object[]}
  */
 const headerCurrencies = [
     { field: 'country', title: 'Country'},
