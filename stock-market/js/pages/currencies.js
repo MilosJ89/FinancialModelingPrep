@@ -40,7 +40,7 @@ const countries = {
  * Array with objects of currencies information
  * 
  */
-const forexEur = [];
+let forexEur = [];
 
 /**
  * 
