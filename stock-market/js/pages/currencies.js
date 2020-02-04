@@ -1,24 +1,63 @@
-//Field and title for header of currencies
+/**
+ * Currencies page
+ * 
+ * Functions for create table of currencies and converter
+ * 
+ * @author Milos Jovanovic
+ */
+
+/**
+ * 
+ * Array with tags of currencies
+ * 
+ */
+const arrayCurrencies = ['EUR', 'USD', 'JPY', 'GBP', 'CHF', 'CAD', 'AUD', 'RUB', 'CNY', 'SEK', 'AED', 'INR', 'EGP', 'NOK'];
+
+/**
+ * 
+ * Array with names of currencies by countries
+ * 
+ */
+const countries = {
+    EUR: 'Euro',
+    USD: 'United States Dollar',
+    JPY: 'Japanese Yen',
+    GBP: 'Pound Sterling',
+    CHF: 'Swiss Franc',
+    CAD: 'Canadian Dollar',
+    AUD: 'Australian Dollar',
+    RUB: 'Rusian Ruble',
+    CNY: 'Chinese Yuan',
+    SEK: 'Swedish Krona',
+    AED: 'UAE Dirham',
+    INR: 'Indian Rupee',
+    EGP: 'Egyptina Pound',
+    NOK: 'Norwegian Krone'
+}
+
+/**
+ * 
+ * Array with objects of currencies information
+ * 
+ */
+const forexEur = [];
+
+/**
+ * 
+ * Array of header currencies with fields and titles
+ * 
+ */
 const headerCurrencies = [
     { field: 'country', title: 'Country'},
     { field: 'currency', title: 'Currency' },
     { field: 'rates', title: 'Exchange' },
 ]
 
-//import abc from '../../img/cuntries/USD.png'
-
-let forexEur;
-const arrayCurrencies = ['EUR', 'USD', 'JPY', 'GBP', 'CHF', 'CAD', 'AUD', 'RUB', 'CNY', 'SEK', 'AED', 'INR', 'EGP', 'NOK'];
-
-//Create array with currencies information for eur
-async function currencies() {
-    let baseUrl = 'https://api.exchangerate-api.com/v4/latest/'
-    forexEur = await fetch(baseUrl + 'eur');
-    forexEur = await forexEur.json();
-    console.log(forexEur);
-}
-
-//Create content of table
+/**
+ * 
+ * Create content table of currencies
+ * 
+ */
 function createContentCurrencies() {
     for(let currency of arrayCurrencies) {
         let row = document.createElement('tr');
@@ -36,7 +75,13 @@ function createContentCurrencies() {
                         let flag = document.createElement('img');
                         flag.setAttribute('src', '../../img/cuntries/' + currency + '.png');
                         flag.onmouseover = currencyInfo.bind(null, currency);
+                        flag.onmouseout = currencyInfoOut.bind(null, currency);
                         country.appendChild(flag);
+
+                        let flagInfo = document.createElement('div');
+                        flagInfo.setAttribute('id', currency);
+                        flagInfo.setAttribute('class', 'flagInfo');
+                        country.appendChild(flagInfo);
                 }
 
                 if(field.field === 'currency') {
@@ -50,7 +95,11 @@ function createContentCurrencies() {
     }
 }
 
-//Create converter
+/**
+ * 
+ * Create converter for convert one currency to another currency
+ * 
+ */
 function createFormConverter () {
     let form = document.createElement('div');
     form.setAttribute('class', 'form');
@@ -103,7 +152,11 @@ function createFormConverter () {
         form.appendChild(result);
 }
 
-//Function for convert currency to currency
+/**
+ * 
+ * Function for convert one currency to another currency
+ * 
+ */
 async function convertCurrencies() {
     let from = document.getElementById('selectFrom');
     let to = document.getElementById('selectTo');
@@ -116,34 +169,44 @@ async function convertCurrencies() {
     resultConvert.innerHTML = (currencyFrom.rates[to.value] * amount.value).toFixed(2) + ' ' + to.value;
 }
 
-//Function for countries
-const countries = {
-    EUR: 'Euro',
-    USD: 'United States Dollar',
-    JPY: 'Japanese Yen',
-    GBP: 'Pound Sterling',
-    CHF: 'Swiss Franc',
-    CAD: 'Canadian Dollar',
-    AUD: 'Australian Dollar',
-    RUB: 'Rusian Ruble',
-    CNY: 'Chinese Yuan',
-    SEK: 'Swedish Krona',
-    AED: 'UAE Dirham',
-    INR: 'Indian Rupee',
-    EGP: 'Egyptina Pound',
-    NOK: 'Norwegian Krone'
+/**
+ * 
+ * Create array with currencies information for currency euro
+ * 
+ */
+async function currencies() {
+    let baseUrl = 'https://api.exchangerate-api.com/v4/latest/'
+    forexEur = await fetch(baseUrl + 'eur');
+    forexEur = await forexEur.json();
 }
 
+
+/**
+ * 
+ * Visibility information name of curencies when mouseover across flag in table
+ * 
+ * @param {string} currency 
+ */
 function currencyInfo(currency) {
-    let flag = document.getElementById('country');
-        
-    let flagInfo = document.createElement('p');
-        flagInfo.setAttribute('class', 'flagInfo');
-        flag.appendChild(flagInfo);
+    let flagInfo = document.getElementById(currency);
+        flagInfo.style.padding = '5px';
+        flagInfo.style.display = 'block';
 
     for(let field of headerCurrencies) {
         if(field.field === 'country') {
             flagInfo.innerHTML = countries[currency];
         }
     }
+}
+
+/**
+ * 
+ * Visibility hidden information name of currencies when mouseout acrros flag in table
+ * 
+ * @param {string} currency 
+ */
+function currencyInfoOut(currency) {
+    let flagInfo = document.getElementById(currency);
+
+    flagInfo.style.display = 'none';
 }

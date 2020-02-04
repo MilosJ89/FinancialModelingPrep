@@ -1,6 +1,35 @@
+/**
+ * Companies page
+ * 
+ * Functions for create content table and sort table with fields
+ * 
+ * @author Milos Jovanovic 
+ */
+
+
+/**
+ * Array of companies
+ */
 const arrayCompanies = [];
 
-//Create array with information of companies
+/**
+ * Array of header companies with fields and titles
+ */
+const headerCompanies = [ 
+    { field: 'image', title: ''},
+    { field: 'companyName', title: 'Company'},
+    { field: 'price', title: 'Price'},
+    { field: 'changes', title: 'Changes'},
+    { field: 'changesPercentage', title: 'Changes %'},
+    { field: 'website', title: 'Website'}
+];
+
+/**
+ * 
+ * Create array with objects of copanies from api
+ * 
+ * @returns {any[]}
+ */
 async function companies() {
     const symbols = ['spy','t','kmi','intc','mu','gdx','ge','seb','eem','ghc','aapl','msft','siri','hpq','cx','efa','amd','snap','fb','orcl'];
     const baseUrl = 'https://financialmodelingprep.com/api/v3/';
@@ -14,17 +43,11 @@ async function companies() {
     return arrayCompanies;
 }
 
-//Field and title for header of company table
-const headerCompanies = [ 
-    { field: 'image', title: ''},
-    { field: 'companyName', title: 'Company'},
-    { field: 'price', title: 'Price'},
-    { field: 'changes', title: 'Changes'},
-    { field: 'changesPercentage', title: 'Changes %'},
-    { field: 'website', title: 'Website'}
-    ];
-
-//Create content of table
+/**
+ * 
+ * Create content table of companies
+ * 
+ */
 function createContentCompanies() {
     for(let company of arrayCompanies) {
         let row = document.createElement('tr');
@@ -54,7 +77,7 @@ function createContentCompanies() {
             }
 
             if(field.field === 'website') {
-                tdTable.innerHTML = `<a href=${company.profile[field.field]}>${company.profile[field.field].replace('http://', '')}</a>`;
+                tdTable.innerHTML = `<a target='_blank' href=${company.profile[field.field]}>${company.profile[field.field].replace('http://', '')}</a>`;
             }
 
             row.appendChild(tdTable);
@@ -62,7 +85,15 @@ function createContentCompanies() {
     }
 }
 
-//Sorted array companies per field
+/**
+ * 
+ * Sorted companies by fields
+ * 
+ * @param {string} field
+ * 
+ * Return array with sorted companies
+ * @returns {any[]}
+ */
 function sortedCompanies(field) {
     
     const sortCompanies = arrayCompanies.sort(function(c1, c2) {
@@ -74,11 +105,3 @@ function sortedCompanies(field) {
     })
     return sortCompanies;
 }
-
-//Sorted array companies per changes percentage
-// function sortedCompaniesChangesPercentage() {
-
-//     const sortCompaniesChangesPercentage = arrayCompanies.map((changesPercentage) => {
-//         return changesPercentage.profile.changesPercentage.replace('%', '');
-//     })
-// }

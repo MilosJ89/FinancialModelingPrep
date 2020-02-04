@@ -1,4 +1,16 @@
-//Create major indexes
+/**
+ * Major index
+ * 
+ * Ticker of major indexes
+ * 
+ * @author Milos Jovanovic
+ */
+
+ /**
+  * 
+  *Function for create ticker with information of major indexes 
+  *
+  */
 async function createMajorIndexes() {
     const url = 'https://financialmodelingprep.com/api/v3/majors-indexes';
     let majorIndexes = await fetch(url);

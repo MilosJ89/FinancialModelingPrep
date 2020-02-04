@@ -1,4 +1,17 @@
-//Open home page
+/**
+ * Home page
+ * 
+ * First page when open application
+ * 
+ * @author Milos Jovanovic
+ */
+
+
+ /**
+  * 
+  * Create home page with image and paragraph
+  * 
+  */
 function openHome() {
     content.innerHTML = '';
 

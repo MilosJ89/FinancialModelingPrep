@@ -1,12 +1,19 @@
-function createContent() {
-    const content = document.getElementById('content');
+/**
+ * Table
+ * 
+ * Function for create header of tables
+ * 
+ * @author Milos Jovanovic
+ */
 
-        const table = document.createElement('table');
-        table.setAttribute('id', 'table');
-        content.appendChild(table);
-}
-
-//Create header of table
+/**
+ * Function for create header of table
+ * 
+ * @param {string[]} arrayHeader 
+ * @param {any[]} items
+ * 
+ * @returns {type}
+ */
 async function createHeader(arrayHeader, items) {
     let trTable = document.createElement('tr');
     table.appendChild(trTable);
@@ -49,4 +56,16 @@ async function createHeader(arrayHeader, items) {
     }
 
     return items;
+}
+
+/**
+ * Function for create table at DOM
+ * 
+ */
+function createTable() {
+    const content = document.getElementById('content');
+
+        const table = document.createElement('table');
+        table.setAttribute('id', 'table');
+        content.appendChild(table);
 }

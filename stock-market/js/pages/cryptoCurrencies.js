@@ -1,23 +1,31 @@
-//Field and title for header of crypto currency table
+/**
+ * Crypto currency page
+ * 
+ * Function for create content table of crypto currencies
+ * 
+ * @author Milos Jovanovic
+ */
+
+/**
+ * Array of crypto currencies
+ */
+const arrayCryptoCurrencies = [];
+
+
+/**
+ * Array of header crypto currencies with fields and titles
+ */
 const headerCryptoCurrencies = [
     { field: 'name', title: 'Name' },
     { field: 'price', title: 'Price' },
     { field: 'changes', title: 'Changes'}
 ]
 
-const arrayCryptoCurrencies = [];
-
-//Create array with information of crypto currencies
-async function cryptoCurrencies() {
-    let result = await fetch('https://financialmodelingprep.com/api/v3/cryptocurrencies');
-    result = await result.json();
-
-    for(let crypto of result.cryptocurrenciesList){
-        arrayCryptoCurrencies.push(crypto);
-    }
-}
-
-//Create content of crypto currencies
+/**
+ * 
+ * Function for create content table of crypto currencies
+ * 
+ */
 function createContentCryptoCurrrencies() {
     for(let crypto of arrayCryptoCurrencies) {
         let row = document.createElement('tr');
@@ -45,5 +53,19 @@ function createContentCryptoCurrrencies() {
 
             row.appendChild(tdTable);
         }
+    }
+}
+
+/**
+ * 
+ * Create array of crypto currencies by api
+ * 
+ */
+async function cryptoCurrencies() {
+    let result = await fetch('https://financialmodelingprep.com/api/v3/cryptocurrencies');
+    result = await result.json();
+
+    for(let crypto of result.cryptocurrenciesList){
+        arrayCryptoCurrencies.push(crypto);
     }
 }

@@ -22,6 +22,7 @@ header {
     position: fixed; 
     top: 0;
     width: 100%;
+    z-index: 5;
 }
 
 p {
@@ -88,6 +89,7 @@ p {
     position: fixed;
     top: 50px;
     width: 100%;
+    z-index: 5;
 }
 
 .ticker {
@@ -170,7 +172,6 @@ ul {
 #table {
     background-color: white;
     border-collapse: collapse;
-    /* left: 250px; */
     left: 50%;
     position: absolute;
     top: 170px;
@@ -233,7 +234,7 @@ td {
 }
 
 a {
-    color: black;
+    color: #183c85;
     text-decoration: none;
 }
 
@@ -303,10 +304,13 @@ button {
 }
 
 .flagInfo {
-    position: absolute;
-    top: 0;
-    color: red;
-    background-color: white;
+    background-color: #183c85;
+    color:white;
     font-size: 14px;
+    left: -20px;
+    position: absolute;
+    text-align: center;
+    top: -20px;
+    width: 130px;
     z-index: 5;
 }
