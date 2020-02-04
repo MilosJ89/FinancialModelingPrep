@@ -38,6 +38,14 @@ async function createHeader(arrayHeader, items) {
                 arrowDownSpan.setAttribute('onclick', 'sortPerChangesPercentage()');
             }
 
+            if(arrayHeader[title].title === 'Crypto Price') {
+                arrowDownSpan.setAttribute('onclick', 'sortCryptoCurrenciesPerPrice()');
+            }
+
+            if(arrayHeader[title].title === 'Crypto Changes') {
+                arrowDownSpan.setAttribute('onclick', 'sortCryptoCurrenciesPerChanges()');
+            }
+
             switch (arrayHeader[title].title) {
                 case '':
                 case 'Company':
@@ -46,6 +54,7 @@ async function createHeader(arrayHeader, items) {
                 case 'Country':
                 case 'Currency':
                 case 'Exchange':
+                case 'Ticker':
                     arrowDownSpan.style.display = 'none';
                     break;
                 default:

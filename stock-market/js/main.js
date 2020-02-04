@@ -136,3 +136,27 @@ function sortPerPrice() {
     createHeader(headerCompanies);
     createContentCompanies(sortedCompanies('price'));
 }
+
+/**
+ * Sort crypto currencies in table by changes
+ */
+function sortCryptoCurrenciesPerChanges() {
+    content.innerHTML = '';
+
+    createTable();
+
+    createHeader(headerCryptoCurrencies);
+    createContentCryptoCurrrencies(sortedCryptoCurrencies('changes'));
+}
+
+/**
+ * Sort crypto currencies in table by price
+ */
+function sortCryptoCurrenciesPerPrice() {
+    content.innerHTML = '';
+
+    createTable();
+
+    createHeader(headerCryptoCurrencies);
+    createContentCryptoCurrrencies(sortedCryptoCurrencies('price'));
+}

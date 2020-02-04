@@ -20,9 +20,10 @@ const arrayCryptoCurrencies = [];
  * Array of header crypto currencies with fields and titles
  */
 const headerCryptoCurrencies = [
+    { field: 'ticker', title: 'Ticker'},
     { field: 'name', title: 'Name' },
-    { field: 'price', title: 'Price' },
-    { field: 'changes', title: 'Changes'}
+    { field: 'price', title: 'Crypto Price' },
+    { field: 'changes', title: 'Crypto Changes'}
 ]
 
 /**
@@ -42,7 +43,7 @@ function createContentCryptoCurrrencies() {
             }
 
             if(field.field === 'price') {
-                tdTable.innerHTML = crypto[field.field] + '$';
+                tdTable.innerHTML = (crypto[field.field]).toFixed(2) + '$';
             }
 
             if (field.field === 'changes') {
@@ -68,4 +69,24 @@ async function cryptoCurrencies() {
     for(let crypto of result.cryptocurrenciesList){
         arrayCryptoCurrencies.push(crypto);
     }
+}
+
+/**
+ * Sorted crypto currencies by fields
+ * Return array with sorted crypto currencies
+ *  
+ * @param {string} field
+ * 
+ * @returns {object[]}
+ */
+function sortedCryptoCurrencies(field) {
+    
+    const sortCryptoCurrencies = arrayCryptoCurrencies.sort(function(c1, c2) {
+        if(c1[field] < c2[field]) {
+            return 1;
+        } else {
+            return -1;
+        }
+    })
+    return sortCryptoCurrencies;
 }
