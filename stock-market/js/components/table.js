@@ -1,5 +1,5 @@
 /**
- * Table
+ * Table component for create table
  * 
  * Function for create header of tables
  * 

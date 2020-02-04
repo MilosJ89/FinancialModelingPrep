@@ -29,7 +29,7 @@ const headerCompanies = [
 ];
 
 /**
- * Create array with objects of copanies from api
+ * Create array with objects of companies from api
  * 
  * @returns {object[]}
  */

@@ -1,5 +1,5 @@
 /**
- * Major index
+ * Major index component for create ticker for major indexes
  * 
  * Ticker of major indexes
  * 
