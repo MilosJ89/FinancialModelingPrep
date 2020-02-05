@@ -19,7 +19,7 @@ const arrayCryptoCurrencies = [];
  * 
  * Array of header crypto currencies with fields and titles
  */
-const headerCryptoCurrencies = [
+export const headerCryptoCurrencies = [
     { field: 'ticker', title: 'Ticker'},
     { field: 'name', title: 'Name' },
     { field: 'price', title: 'Crypto Price' },
@@ -29,7 +29,7 @@ const headerCryptoCurrencies = [
 /**
  * Function for create content table of crypto currencies
  */
-function createContentCryptoCurrrencies() {
+export function createContentCryptoCurrrencies() {
     for(let crypto of arrayCryptoCurrencies) {
         let row = document.createElement('tr');
         table.appendChild(row);
@@ -62,7 +62,7 @@ function createContentCryptoCurrrencies() {
 /**
  * Create array of crypto currencies by api
  */
-async function cryptoCurrencies() {
+export async function cryptoCurrencies() {
     let result = await fetch('https://financialmodelingprep.com/api/v3/cryptocurrencies');
     result = await result.json();
 
@@ -79,7 +79,7 @@ async function cryptoCurrencies() {
  * 
  * @returns {object[]}
  */
-function sortedCryptoCurrencies(field) {
+export function sortedCryptoCurrencies(field) {
     
     const sortCryptoCurrencies = arrayCryptoCurrencies.sort(function(c1, c2) {
         if(c1[field] < c2[field]) {

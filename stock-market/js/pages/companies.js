@@ -12,14 +12,14 @@
  * 
  * @type {object[]}
  */
-const arrayCompanies = [];
+let arrayCompanies = [];
 
 /**
  * Array of header companies with fields and titles
  * 
  * @type {object[]}
  */
-const headerCompanies = [ 
+export const headerCompanies = [ 
     { field: 'image', title: ''},
     { field: 'companyName', title: 'Company'},
     { field: 'price', title: 'Price'},
@@ -33,7 +33,7 @@ const headerCompanies = [
  * 
  * @returns {object[]}
  */
-async function companies() {
+export async function companies() {
     const symbols = ['spy','t','kmi','intc','mu','gdx','ge','seb','eem','ghc','aapl','msft','siri','hpq','cx','efa','amd','snap','fb','orcl'];
     const baseUrl = 'https://financialmodelingprep.com/api/v3/';
 
@@ -49,7 +49,7 @@ async function companies() {
 /**
  * Create content table of companies
  */
-function createContentCompanies() {
+export function createContentCompanies() {
     for(let company of arrayCompanies) {
         let row = document.createElement('tr');
         table.appendChild(row);
@@ -94,7 +94,7 @@ function createContentCompanies() {
  * Return array with sorted companies
  * @returns {object[]}
  */
-function sortedCompanies(field) {
+export function sortedCompanies(field) {
     
     const sortCompanies = arrayCompanies.sort(function(c1, c2) {
         if(c1.profile[field] < c2.profile[field]) {

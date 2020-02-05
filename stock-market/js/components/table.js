@@ -14,66 +14,70 @@
  * 
  * @returns {type}
  */
-async function createHeader(arrayHeader, items) {
-    let trTable = document.createElement('tr');
-    table.appendChild(trTable);
+export async function createHeader(arrayHeader, items) {
+
+    let header = `<div id='header'></div>`;
+    table.innerHTML = header; 
 
     for(let title in arrayHeader) {
-        let headerTable = document.createElement('th');
-        headerTable.innerHTML = arrayHeader[title].title;
-        trTable.appendChild(headerTable);
+        if (arrayHeader[title].hasOwnProperty('clickHandler')) {
+             
+        }
+        let headerTitle = `<p>${arrayHeader[title].title}</p>`;
+        // header.innerHTML = headerTitle;
+        document.getElementById('header').innerHTML += headerTitle;
+        //header.innerHTML = headerTitle;
+        // headerTitle.innerHTML = arrayHeader[title].title;
 
-            let arrowDownSpan = document.createElement('span');
-            arrowDownSpan.setAttribute('class', 'sort');
+            // let arrowDownSpan = `<span class='sort'></span>`;
 
-            if(arrayHeader[title].title === 'Price') {
-                arrowDownSpan.setAttribute('onclick', 'sortPerPrice()');
-            }
+            // if(arrayHeader[title].title === 'Price') {
+            //     arrowDownSpan.setAttribute('onclick', 'sortPerPrice()');
+            // }
 
-            if(arrayHeader[title].title === 'Changes') {
-                arrowDownSpan.setAttribute('onclick', 'sortPerChanges()');
-            }
+            // if(arrayHeader[title].title === 'Changes') {
+            //     arrowDownSpan.setAttribute('onclick', 'sortPerChanges()');
+            // }
 
-            if(arrayHeader[title].title === 'Changes %') {
-                arrowDownSpan.setAttribute('onclick', 'sortPerChangesPercentage()');
-            }
+            // if(arrayHeader[title].title === 'Changes %') {
+            //     arrowDownSpan.setAttribute('onclick', 'sortPerChangesPercentage()');
+            // }
 
-            if(arrayHeader[title].title === 'Crypto Price') {
-                arrowDownSpan.setAttribute('onclick', 'sortCryptoCurrenciesPerPrice()');
-            }
+            // if(arrayHeader[title].title === 'Crypto Price') {
+            //     arrowDownSpan.setAttribute('onclick', 'sortCryptoCurrenciesPerPrice()');
+            // }
 
-            if(arrayHeader[title].title === 'Crypto Changes') {
-                arrowDownSpan.setAttribute('onclick', 'sortCryptoCurrenciesPerChanges()');
-            }
+            // if(arrayHeader[title].title === 'Crypto Changes') {
+            //     arrowDownSpan.setAttribute('onclick', 'sortCryptoCurrenciesPerChanges()');
+            // }
 
-            switch (arrayHeader[title].title) {
-                case '':
-                case 'Company':
-                case 'Website':
-                case 'Name':
-                case 'Country':
-                case 'Currency':
-                case 'Exchange':
-                case 'Ticker':
-                    arrowDownSpan.style.display = 'none';
-                    break;
-                default:
-                    break;
-            }
+            // switch (arrayHeader[title].title) {
+            //     case '':
+            //     case 'Company':
+            //     case 'Website':
+            //     case 'Name':
+            //     case 'Country':
+            //     case 'Currency':
+            //     case 'Exchange':
+            //     case 'Ticker':
+            //         arrowDownSpan.style.display = 'none';
+            //         break;
+            //     default:
+            //         break;
+            // }
 
-            headerTable.appendChild(arrowDownSpan);
+            //headerTitle.innerHTML = arrowDownSpan;
     }
 
     return items;
 }
 
 /**
- * Function for create table at DOM
+ * Function for create table in DOM
  */
-function createTable() {
+export function createTable() {
     const content = document.getElementById('content');
 
-        const table = document.createElement('table');
-        table.setAttribute('id', 'table');
-        content.appendChild(table);
+        const table = `<div id="table"></div>`;
+        content.innerHTML = table;
 }

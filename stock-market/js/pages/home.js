@@ -9,7 +9,7 @@
  /**
   * Create home page with image and paragraph
   */
-function openHome() {
+export function openHome() {
     content.innerHTML = '';
 
     let logoImg = document.createElement('img');

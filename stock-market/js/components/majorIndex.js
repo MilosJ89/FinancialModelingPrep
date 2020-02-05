@@ -9,7 +9,7 @@
  /**
   * Function for create ticker with information of major indexes 
   */
-async function createMajorIndexes() {
+export async function createMajorIndexes() {
     const url = 'https://financialmodelingprep.com/api/v3/majors-indexes';
     let majorIndexes = await fetch(url);
     majorIndexes = await majorIndexes.json();

@@ -9,30 +9,25 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
-<body onload="clock()">
+<body>
     <header>
-        <p id="logo" onclick="openHome()">FMP</p>
+        <p id="logo">FMP</p>
         <p>Financial Modeling Prep</p>
         <p id="clock"></p>
         <p id="time"></p>
     </header>
     <div class="ticker-wrap"></div>
+    <p id="test"></p>
     <ul>
-        <li><a class="btn active disable" href="#home" onclick="openHome()">Home</a></li>
-        <li><a class="btn" href="#companies" onclick="openCompanies()">Companies</a></li>
-        <li><a class="btn" href="#cryptoCurrency" onclick="openCryptoCurrencies()">Crypto Currencies</a></li>
-        <li><a class="btn" href="#currency" onclick="openCurrencies()">Currencies</a></li>
+        <li><a class="btn active disable" href="#home" id="openHome">Home</a></li>
+        <li><a class="btn" href="#companies" id="openCompanies">Companies</a></li>
+        <li><a class="btn" href="#cryptoCurrency" id="openCryptoCurrencies">Crypto Currencies</a></li>
+        <li><a class="btn" href="#currency" id="openCurrencies">Currencies</a></li>
         <li><a class="btn" href="#about">About</a></li>
     </ul>
     <div id="content"></div>
 
     <!-- Javascript -->
-    <script src="/js/pages/home.js"></script>
-    <script src="/js/pages/currencies.js"></script>
-    <script src="/js/pages/cryptoCurrencies.js"></script>
-    <script src="/js/pages/companies.js"></script>
-    <script src="/js/components/table.js"></script>
-    <script src="/js/components/majorIndex.js"></script>
-    <script src="/js/main.js"></script>
+    <script src="build/app.bundle.js"></script>
 </body>
 </html>

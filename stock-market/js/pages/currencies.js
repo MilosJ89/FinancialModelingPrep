@@ -47,7 +47,7 @@ let forexEur = [];
  * 
  * @type {object[]}
  */
-const headerCurrencies = [
+export const headerCurrencies = [
     { field: 'country', title: 'Country'},
     { field: 'currency', title: 'Currency' },
     { field: 'rates', title: 'Exchange' },
@@ -56,7 +56,7 @@ const headerCurrencies = [
 /**
  * Create content table of currencies
  */
-function createContentCurrencies() {
+export function createContentCurrencies() {
     for(let currency of arrayCurrencies) {
         let row = document.createElement('tr');
         table.appendChild(row);
@@ -96,7 +96,7 @@ function createContentCurrencies() {
 /**
  * Create converter for convert one currency to another currency
  */
-function createFormConverter () {
+export function createFormConverter () {
     let form = document.createElement('div');
     form.setAttribute('class', 'form');
     content.appendChild(form);
@@ -140,7 +140,8 @@ function createFormConverter () {
 
         let btnConvert = document.createElement('button');
         btnConvert.innerHTML = 'Convert';
-        btnConvert.setAttribute('onclick', 'convertCurrencies()');
+        // btnConvert.setAttribute('onclick', 'convertCurrencies()');
+        btnConvert.onclick = convertCurrencies;
         form.appendChild(btnConvert);
 
         let result = document.createElement('p');
@@ -166,7 +167,7 @@ async function convertCurrencies() {
 /**
  * Create array with currencies information for currency euro
  */
-async function currencies() {
+export async function currencies() {
     let baseUrl = 'https://api.exchangerate-api.com/v4/latest/'
     forexEur = await fetch(baseUrl + 'eur');
     forexEur = await forexEur.json();
