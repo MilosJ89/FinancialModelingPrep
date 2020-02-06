@@ -21,40 +21,44 @@ const arrayCryptoCurrencies = [];
  */
 export const headerCryptoCurrencies = [
     { field: 'ticker', title: 'Ticker'},
-    { field: 'name', title: 'Name' },
-    { field: 'price', title: 'Crypto Price' },
-    { field: 'changes', title: 'Crypto Changes'}
+    { field: 'name', title: 'Name', class: 'bold' },
+    { field: 'price', title: 'Price', clickHandler: 'sortCryptoCurrenciesPerPrice' },
+    { field: 'changes', title: 'Changes', clickHandler: 'sortCryptoCurrenciesPerChanges'}
 ]
 
 /**
  * Function for create content table of crypto currencies
  */
 export function createContentCryptoCurrrencies() {
-    for(let crypto of arrayCryptoCurrencies) {
-        let row = document.createElement('tr');
-        table.appendChild(row);
+    for(let crypto in arrayCryptoCurrencies) {
+        let item = `<div id='item' class='items'></div>`;
+        document.getElementById('contentTable').innerHTML += item;
 
         for(let field of headerCryptoCurrencies) {
-            let tdTable = document.createElement('td');
-            tdTable.innerHTML = crypto[field.field];
+            let cell = `<div class='${field.field} cell'>${arrayCryptoCurrencies[crypto][field.field]}</div>`;
+            document.getElementsByClassName('items')[crypto].innerHTML += cell;
 
-            if(field.field === 'name') {
-                tdTable.setAttribute('class', 'bold');
+            if(field.hasOwnProperty('class')) {
+                document.getElementsByClassName(field.field)[crypto].classList.add(field.class);
             }
 
             if(field.field === 'price') {
-                tdTable.innerHTML = (crypto[field.field]).toFixed(2) + '$';
-            }
-
-            if (field.field === 'changes') {
-                tdTable.setAttribute('class', `${crypto.changes > 0 ? 'green' : crypto.changes === 0 ? 'neutral' : 'red'}`);
+                document.getElementsByClassName(field.field)[crypto].innerHTML = `${(arrayCryptoCurrencies[crypto][field.field]).toFixed(2)} $`;
             }
 
             if(field.field === 'changes') {
-                tdTable.innerHTML = crypto[field.field] + '$';
+                document.getElementsByClassName(field.field)[crypto].classList.add(`${arrayCryptoCurrencies[crypto].changes > 0 ? 'green' : arrayCryptoCurrencies[crypto].changes === 0 ? 'neutral' : 'red'}`);
             }
 
-            row.appendChild(tdTable);
+            // if (field.field === 'changes') {
+            //     tdTable.setAttribute('class', `${crypto.changes > 0 ? 'green' : crypto.changes === 0 ? 'neutral' : 'red'}`);
+            // }
+
+            // if(field.field === 'changes') {
+            //     tdTable.innerHTML = crypto[field.field] + '$';
+            // }
+
+            // row.appendChild(tdTable);
         }
     }
 }

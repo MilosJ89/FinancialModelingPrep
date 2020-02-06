@@ -21,10 +21,10 @@ let arrayCompanies = [];
  */
 export const headerCompanies = [ 
     { field: 'image', title: ''},
-    { field: 'companyName', title: 'Company'},
-    { field: 'price', title: 'Price'},
-    { field: 'changes', title: 'Changes'},
-    { field: 'changesPercentage', title: 'Changes %'},
+    { field: 'companyName', title: 'Company', class: 'bold'},
+    { field: 'price', title: 'Price', clickHandler: 'sortCompaniesPerPrice'},
+    { field: 'changes', title: 'Changes', clickHandler: 'sortCompaniesPerChanges'},
+    { field: 'changesPercentage', title: 'Changes %', clickHandler: 'sortCompaniesPerChangesPercentage'},
     { field: 'website', title: 'Website'}
 ];
 
@@ -50,38 +50,34 @@ export async function companies() {
  * Create content table of companies
  */
 export function createContentCompanies() {
-    for(let company of arrayCompanies) {
-        let row = document.createElement('tr');
-        table.appendChild(row);
+    for(let company in arrayCompanies) {
+
+        let item = `<div id='item' class='items'></div>`;
+        document.getElementById('contentTable').innerHTML += item;
 
         for(let field of headerCompanies) {
-            let tdTable = document.createElement('td');
-            tdTable.innerHTML = company.profile[field.field];
+            let cell = `<div class='${field.field} cell'>${arrayCompanies[company].profile[field.field]}</div>`;
+            document.getElementsByClassName('items')[company].innerHTML += cell;
 
-            if(field.field === 'image') {
-                tdTable.innerHTML = '';
-                let img = document.createElement('img');
-                img.setAttribute('src', `${company.profile[field.field]}`);
-                tdTable.appendChild(img);
-            }
+                if (field.hasOwnProperty('class')) {
+                    document.getElementsByClassName(field.field)[company].classList.add(field.class);
+                }
 
-            if (field.field === 'companyName') {
-                tdTable.setAttribute('class', 'bold');
-            }
-
-            if (field.field === 'changes') {
-                tdTable.setAttribute('class', `${company.profile.changes > 0 ? 'green' : company.profile.changes === 0 ? 'neutral' : 'red'}`);
-            }
-
-            if(field.field === 'changesPercentage') {
-                tdTable.innerHTML = company.profile[field.field].replace(/[()]/g, ''); 
-            }
-
-            if(field.field === 'website') {
-                tdTable.innerHTML = `<a target='_blank' href=${company.profile[field.field]}>${company.profile[field.field].replace('http://', '')}</a>`;
-            }
-
-            row.appendChild(tdTable);
+                switch (field.field) {
+                    case 'image':
+                        let img = `<img class='img' src='${arrayCompanies[company].profile[field.field]}'></img>`;
+                        document.getElementsByClassName('image')[company].innerHTML = img;
+                        break;
+                    case 'changes':
+                        document.getElementsByClassName(field.field)[company].classList.add(`${arrayCompanies[company].profile.changes > 0 ? 'green' : arrayCompanies[company].profile.changes === 0 ? 'neutral' : 'red'}`);
+                        break;
+                    case 'changesPercentage':
+                        document.getElementsByClassName(field.field)[company].innerHTML = arrayCompanies[company].profile[field.field].replace(/[()]/g, '');  
+                        break;  
+                    case 'website':
+                        let link = `<a target='_blank' href=${arrayCompanies[company].profile[field.field]}>${arrayCompanies[company].profile[field.field].replace('http://', '')}</a>`;
+                        document.getElementsByClassName(field.field)[company].innerHTML = link;                
+                }
         }
     }
 }

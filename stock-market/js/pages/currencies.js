@@ -57,38 +57,41 @@ export const headerCurrencies = [
  * Create content table of currencies
  */
 export function createContentCurrencies() {
-    for(let currency of arrayCurrencies) {
-        let row = document.createElement('tr');
-        table.appendChild(row);
+    for(let currency in arrayCurrencies) {
+        let item = `<div id='item' class='items'></div>`;
+        document.getElementById('contentTable').innerHTML += item;
 
             for(let field of headerCurrencies) {
-                let tdTable = document.createElement('td');
-                row.appendChild(tdTable);
-
-                if(field.field === 'country') {
-                    let country = document.createElement('div');
-                    country.setAttribute('id', 'country');
-                    tdTable.appendChild(country);
-
-                        let flag = document.createElement('img');
-                        flag.setAttribute('src', '../../img/cuntries/' + currency + '.png');
-                        flag.onmouseover = currencyInfo.bind(null, currency);
-                        flag.onmouseout = currencyInfoOut.bind(null, currency);
-                        country.appendChild(flag);
-
-                        let flagInfo = document.createElement('div');
-                        flagInfo.setAttribute('id', currency);
-                        flagInfo.setAttribute('class', 'flagInfo');
-                        country.appendChild(flagInfo);
-                }
+                let cell = `<div class='${field.field} cell'></div>`;
+                document.getElementsByClassName('items')[currency].innerHTML += cell;
 
                 if(field.field === 'currency') {
-                    tdTable.innerHTML = currency;
+                    document.getElementsByClassName(field.field)[currency].innerHTML += arrayCurrencies[currency];   
                 }
+                // if(field.field === 'country') {
+                //     let country = document.createElement('div');
+                //     country.setAttribute('id', 'country');
+                //     tdTable.appendChild(country);
 
-                if(field.field === 'rates') {
-                    tdTable.innerHTML = forexEur.rates[currency];
-                }
+                //         let flag = document.createElement('img');
+                //         flag.setAttribute('src', '../../img/countries/' + currency + '.png');
+                //         flag.onmouseover = currencyInfo.bind(null, currency);
+                //         flag.onmouseout = currencyInfoOut.bind(null, currency);
+                //         country.appendChild(flag);
+
+                //         let flagInfo = document.createElement('div');
+                //         flagInfo.setAttribute('id', currency);
+                //         flagInfo.setAttribute('class', 'flagInfo');
+                //         country.appendChild(flagInfo);
+                // }
+
+                // if(field.field === 'currency') {
+                //     tdTable.innerHTML = currency;
+                // }
+
+                // if(field.field === 'rates') {
+                //     tdTable.innerHTML = forexEur.rates[currency];
+                // }
             }
     }
 }

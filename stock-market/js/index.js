@@ -88,12 +88,12 @@ function openCompanies() {
 
     table.createTable();
 
-    companies.companies()
-        .then(table.createHeader.bind(null, companies.headerCompanies));
-
     // companies.companies()
-    //     .then(table.createHeader.bind(null, companies.headerCompanies))
-    //     .then(companies.createContentCompanies.bind(null));
+    //     .then(table.createHeader.bind(null, companies.headerCompanies));
+
+    companies.companies()
+        .then(table.createHeader.bind(null, companies.headerCompanies))
+        .then(companies.createContentCompanies.bind(null));
 }
 
 /**
@@ -127,7 +127,7 @@ function openCurrencies() {
 /**
  * Sort companies in table by changes
  */
-function sortPerChanges() {
+function sortCompaniesPerChanges() {
     content.innerHTML = '';
 
     table.createTable();
@@ -139,7 +139,7 @@ function sortPerChanges() {
 /**
  * Sort companies in table by changes percentage
  */
-function sortPerChangesPercentage() {
+function sortCompaniesPerChangesPercentage() {
     content.innerHTML = '';
 
     table.createTable();
@@ -151,7 +151,7 @@ function sortPerChangesPercentage() {
 /**
  * Sort companies in table by price 
  */
-function sortPerPrice() {
+function sortCompaniesPerPrice() {
     content.innerHTML = '';
 
     table.createTable();

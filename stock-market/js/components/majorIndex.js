@@ -18,7 +18,7 @@ export async function createMajorIndexes() {
     let tickerWrap = document.querySelector('.ticker-wrap');
 
         let indexDiv = document.createElement('div');
-        indexDiv.setAttribute('class', 'ticker');
+        indexDiv.setAttribute('class', 'tickerWrapper');
         tickerWrap.appendChild(indexDiv);
 
     for(let index of indexes) {

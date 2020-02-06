@@ -6,7 +6,7 @@
 
 body {
     background-color: #eaeaea;
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 
 header {
@@ -33,7 +33,6 @@ p {
     padding: 10px;
     text-align: center;
 }
-
 
 #logo {
     color: white;
@@ -92,7 +91,7 @@ p {
     z-index: 5;
 }
 
-.ticker {
+.tickerWrapper {
     align-items: center;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
@@ -178,13 +177,31 @@ ul {
     transform: translate(-50%, 0);
 }
 
+#header {
+    background-color: #041b2f;
+    display: flex;
+    justify-content: space-between;
+}
+
+.headerTitle {
+    color: white;
+    position: relative;
+    text-align: left;
+    width: 200px;
+}
+
+#contentTable {
+    height: 70vh;
+    overflow-y: scroll;
+}
+
 .sort {
     background-image: url('../img/icon/arrow-down.svg');
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
     height: 25px;
-    left: 0;
+    left: -15px;
     position: absolute;
     top: 50%;
     transform: translate(0, -50%);
@@ -192,10 +209,49 @@ ul {
 }
 
 img {
+    display: block;
     height: 24px;
+    margin: 0 auto;
     width: 24px;
 }
 
+.bold {
+    font-weight: bold;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+.neutral {
+    color: gray;
+}
+
+.items {
+    align-items: center;
+    display: flex;
+    padding: 5px 0;
+}
+
+.items:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.cell {
+    display: flex;
+    padding: 0 5px;
+    width: 200px;
+}
+
+.ticker {
+    padding-left: 30px;
+}
+
+/*
 th {
     border-bottom: 2px solid gray;
     cursor: pointer;
@@ -217,21 +273,6 @@ td {
     text-align: left;
 }
 
-.green {
-    color: green;
-}
-
-.red {
-    color: red;
-}
-
-.neutral {
-    color: gray;
-}
-
-.bold {
-    font-weight: bold;
-}
 
 a {
     color: #183c85;
@@ -240,7 +281,7 @@ a {
 
 a:hover {
     color: gray;
-}
+} */
 
 /*** Converter ***/
 .form {

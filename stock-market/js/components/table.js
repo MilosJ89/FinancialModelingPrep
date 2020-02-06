@@ -16,18 +16,18 @@
  */
 export async function createHeader(arrayHeader, items) {
 
-    let header = `<div id='header'></div>`;
-    table.innerHTML = header; 
-
     for(let title in arrayHeader) {
-        if (arrayHeader[title].hasOwnProperty('clickHandler')) {
+        // if (arrayHeader[title].hasOwnProperty('clickHandler')) {
              
-        }
-        let headerTitle = `<p>${arrayHeader[title].title}</p>`;
-        // header.innerHTML = headerTitle;
+        // }
+        let headerTitle = `<p id='headerTitle' class='headerTitle'>${arrayHeader[title].title}</p>`;
         document.getElementById('header').innerHTML += headerTitle;
-        //header.innerHTML = headerTitle;
-        // headerTitle.innerHTML = arrayHeader[title].title;
+
+            if(arrayHeader[title].hasOwnProperty('clickHandler')) {
+                let arrowDownSpan = `<span class='sort'></span>`;
+                // arrowDownSpan.onclick = arrayHeader[title].clickHandler;
+                document.getElementsByClassName('headerTitle')[title].innerHTML += arrowDownSpan;
+            }
 
             // let arrowDownSpan = `<span class='sort'></span>`;
 
@@ -80,4 +80,10 @@ export function createTable() {
 
         const table = `<div id="table"></div>`;
         content.innerHTML = table;
+
+            let header = `<div id='header'></div>`;
+            document.getElementById('table').innerHTML = header;
+            
+            let contentTable = `<div id='contentTable'></div>`;
+            document.getElementById('table').innerHTML += contentTable;
 }
