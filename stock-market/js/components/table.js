@@ -17,16 +17,17 @@
 export async function createHeader(arrayHeader, items) {
 
     for(let title in arrayHeader) {
-        // if (arrayHeader[title].hasOwnProperty('clickHandler')) {
-             
-        // }
+
         let headerTitle = `<p id='headerTitle' class='headerTitle'>${arrayHeader[title].title}</p>`;
         document.getElementById('header').innerHTML += headerTitle;
 
             if(arrayHeader[title].hasOwnProperty('clickHandler')) {
-                let arrowDownSpan = `<span class='sort'></span>`;
-                // arrowDownSpan.onclick = arrayHeader[title].clickHandler;
+                let arrowDownSpan = `<span class='sort' id='${title}'></span>`;
                 document.getElementsByClassName('headerTitle')[title].innerHTML += arrowDownSpan;
+            }
+            
+            if(arrayHeader[title].title === 'Country') {
+                document.getElementsByClassName('headerTitle')[title].classList.add('center');
             }
 
             // let arrowDownSpan = `<span class='sort'></span>`;
@@ -49,21 +50,6 @@ export async function createHeader(arrayHeader, items) {
 
             // if(arrayHeader[title].title === 'Crypto Changes') {
             //     arrowDownSpan.setAttribute('onclick', 'sortCryptoCurrenciesPerChanges()');
-            // }
-
-            // switch (arrayHeader[title].title) {
-            //     case '':
-            //     case 'Company':
-            //     case 'Website':
-            //     case 'Name':
-            //     case 'Country':
-            //     case 'Currency':
-            //     case 'Exchange':
-            //     case 'Ticker':
-            //         arrowDownSpan.style.display = 'none';
-            //         break;
-            //     default:
-            //         break;
             // }
 
             //headerTitle.innerHTML = arrowDownSpan;

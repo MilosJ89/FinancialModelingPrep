@@ -88,9 +88,6 @@ function openCompanies() {
 
     table.createTable();
 
-    // companies.companies()
-    //     .then(table.createHeader.bind(null, companies.headerCompanies));
-
     companies.companies()
         .then(table.createHeader.bind(null, companies.headerCompanies))
         .then(companies.createContentCompanies.bind(null));
@@ -122,64 +119,4 @@ function openCurrencies() {
         .then(currencies.createContentCurrencies);
     
     currencies.createFormConverter();
-}
-
-/**
- * Sort companies in table by changes
- */
-function sortCompaniesPerChanges() {
-    content.innerHTML = '';
-
-    table.createTable();
-
-    table.createHeader(companies.headerCompanies);
-    companies.createContentCompanies(companies.sortedCompanies('changes'));
-}
-
-/**
- * Sort companies in table by changes percentage
- */
-function sortCompaniesPerChangesPercentage() {
-    content.innerHTML = '';
-
-    table.createTable();
-
-    table.createHeader(companies.headerCompanies);
-    companies.createContentCompanies(companies.sortedCompanies('changesPercentage'));
-}
-
-/**
- * Sort companies in table by price 
- */
-function sortCompaniesPerPrice() {
-    content.innerHTML = '';
-
-    table.createTable();
-
-    table.createHeader(companies.headerCompanies);
-    companies.createContentCompanies(companies.sortedCompanies('price'));
-}
-
-/**
- * Sort crypto currencies in table by changes
- */
-function sortCryptoCurrenciesPerChanges() {
-    content.innerHTML = '';
-
-    table.createTable();
-
-    table.createHeader(cryptoCurrencies.headerCryptoCurrencies);
-    cryptoCurrencies.createContentCryptoCurrrencies(cryptoCurrencies.sortedCryptoCurrencies('changes'));
-}
-
-/**
- * Sort crypto currencies in table by price
- */
-function sortCryptoCurrenciesPerPrice() {
-    content.innerHTML = '';
-
-    table.createTable;
-
-    table.createHeader(cryptoCurrencies.headerCryptoCurrencies);
-    cryptoCurrencies.createContentCryptoCurrrencies(cryptoCurrencies.sortedCryptoCurrencies('price'));
 }

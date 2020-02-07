@@ -65,91 +65,54 @@ export function createContentCurrencies() {
                 let cell = `<div class='${field.field} cell'></div>`;
                 document.getElementsByClassName('items')[currency].innerHTML += cell;
 
+                if(field.field === 'country') {
+                    let img = `<img id='${arrayCurrencies[currency]}' onmouseover='${currencyInfo.bind(null, arrayCurrencies[currency])}' src='${'../../img/countries/'}${arrayCurrencies[currency]}.png'></img>`;
+                    document.getElementsByClassName(field.field)[currency].innerHTML += img;
+                    
+                    let flagInfo = `<div id='${arrayCurrencies[currency]}1' class='flagInfo'></div>`;
+                    document.getElementsByClassName(field.field)[currency].innerHTML += flagInfo;
+                }
+
                 if(field.field === 'currency') {
                     document.getElementsByClassName(field.field)[currency].innerHTML += arrayCurrencies[currency];   
                 }
-                // if(field.field === 'country') {
-                //     let country = document.createElement('div');
-                //     country.setAttribute('id', 'country');
-                //     tdTable.appendChild(country);
 
-                //         let flag = document.createElement('img');
-                //         flag.setAttribute('src', '../../img/countries/' + currency + '.png');
-                //         flag.onmouseover = currencyInfo.bind(null, currency);
-                //         flag.onmouseout = currencyInfoOut.bind(null, currency);
-                //         country.appendChild(flag);
+                if(field.field === 'rates') {
+                    document.getElementsByClassName(field.field)[currency].innerHTML += forexEur.rates[arrayCurrencies[currency]].toFixed(2);
+                }
 
-                //         let flagInfo = document.createElement('div');
-                //         flagInfo.setAttribute('id', currency);
-                //         flagInfo.setAttribute('class', 'flagInfo');
-                //         country.appendChild(flagInfo);
-                // }
-
-                // if(field.field === 'currency') {
-                //     tdTable.innerHTML = currency;
-                // }
-
-                // if(field.field === 'rates') {
-                //     tdTable.innerHTML = forexEur.rates[currency];
-                // }
             }
     }
+}
+
+function createOptionElement(value) {
+    return `<option>${value}</option>`;
 }
 
 /**
  * Create converter for convert one currency to another currency
  */
 export function createFormConverter () {
-    let form = document.createElement('div');
-    form.setAttribute('class', 'form');
-    content.appendChild(form);
+    let hello = `
+        <div id='form' class='form'>
+            <label>Amount:</label>
+            <input type='number' id='amount'></input>
+            <label>From:</label>
+            <select id='selectFrom'>
+                ${arrayCurrencies.map(createOptionElement)}
+            </select>
+            <label>To:</label>
+            <select id='selectTo'>
+                ${arrayCurrencies.map(createOptionElement)}
+            </select>
+            <button id='convert'>Convert</button>
+            <p id='resultConvert'></p>
+        </div>
+    `;
 
-        let labelAmount = document.createElement('label');
-        labelAmount.innerHTML = 'Amount:';
-        form.appendChild(labelAmount);
+    document.getElementById('content').innerHTML += hello;
 
-        let inputAmount = document.createElement('input');
-        inputAmount.setAttribute('type', 'number');
-        inputAmount.setAttribute('id', 'amount');
-        form.appendChild(inputAmount);
-
-        let labelFrom = document.createElement('label');
-        labelFrom.innerHTML = 'From:';
-        form.appendChild(labelFrom);
-
-        let selectFrom = document.createElement('select');
-        selectFrom.setAttribute('id', 'selectFrom');
-        form.appendChild(selectFrom);
-
-            for(let currency of arrayCurrencies) {
-                let optionFrom = document.createElement('option');
-                optionFrom.innerHTML = currency;
-                selectFrom.appendChild(optionFrom);
-            } 
-
-        let labelTo = document.createElement('label');
-        labelTo.innerHTML = 'To:';
-        form.appendChild(labelTo);
-
-        let selectTo = document.createElement('select');
-        selectTo.setAttribute('id', 'selectTo');
-        form.appendChild(selectTo);
-
-            for(let currency of arrayCurrencies) {
-                let optionTo = document.createElement('option');
-                optionTo.innerHTML = currency;
-                selectTo.appendChild(optionTo);
-            }
-
-        let btnConvert = document.createElement('button');
-        btnConvert.innerHTML = 'Convert';
-        // btnConvert.setAttribute('onclick', 'convertCurrencies()');
-        btnConvert.onclick = convertCurrencies;
-        form.appendChild(btnConvert);
-
-        let result = document.createElement('p');
-        result.setAttribute('id', 'resultConvert');
-        form.appendChild(result);
+    document.getElementById('convert').addEventListener('click', convertCurrencies);
 }
 
 /**
@@ -183,7 +146,7 @@ export async function currencies() {
  * @param {string} currency 
  */
 function currencyInfo(currency) {
-    let flagInfo = document.getElementById(currency);
+    let flagInfo = document.getElementById(`${currency}1`);
         flagInfo.style.padding = '5px';
         flagInfo.style.display = 'block';
 

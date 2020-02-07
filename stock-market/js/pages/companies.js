@@ -19,12 +19,15 @@ let arrayCompanies = [];
  * 
  * @type {object[]}
  */
+
+import {sortCompaniesPerPrice, sortCompaniesPerChanges, sortCompaniesPerChangesPercentage} from '../utility';
+
 export const headerCompanies = [ 
     { field: 'image', title: ''},
     { field: 'companyName', title: 'Company', class: 'bold'},
-    { field: 'price', title: 'Price', clickHandler: 'sortCompaniesPerPrice'},
-    { field: 'changes', title: 'Changes', clickHandler: 'sortCompaniesPerChanges'},
-    { field: 'changesPercentage', title: 'Changes %', clickHandler: 'sortCompaniesPerChangesPercentage'},
+    { field: 'price', title: 'Price', clickHandler: sortCompaniesPerPrice},
+    { field: 'changes', title: 'Changes', clickHandler: sortCompaniesPerChanges},
+    { field: 'changesPercentage', title: 'Changes %', clickHandler: sortCompaniesPerChangesPercentage},
     { field: 'website', title: 'Website'}
 ];
 
@@ -69,6 +72,7 @@ export function createContentCompanies() {
                         document.getElementsByClassName('image')[company].innerHTML = img;
                         break;
                     case 'changes':
+                        document.getElementsByClassName(field.field)[company].innerHTML = arrayCompanies[company].profile[field.field].toFixed(2);
                         document.getElementsByClassName(field.field)[company].classList.add(`${arrayCompanies[company].profile.changes > 0 ? 'green' : arrayCompanies[company].profile.changes === 0 ? 'neutral' : 'red'}`);
                         break;
                     case 'changesPercentage':

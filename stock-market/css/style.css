@@ -96,12 +96,13 @@ p {
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-name: ticker;
-    animation-duration: 30s;
+    animation-duration: 50s;
     box-sizing: content-box;
     display: flex;
     height: 50px; 
     padding-right: 100%;
     white-space: nowrap; 
+    width: 100%;
 }
 
 .ticker-item {
@@ -178,7 +179,7 @@ ul {
 }
 
 #header {
-    background-color: #041b2f;
+    background-color: #176140;
     display: flex;
     justify-content: space-between;
 }
@@ -287,14 +288,15 @@ a:hover {
 .form {
     align-items: center;
     background-color: #183c85;
-    border-radius: 10px;
     color: white;
     display: flex;
     left: 50%;
+    justify-content: flex-start;
     padding: 10px;
     position: fixed;
     top: 110px;
     transform: translate(-50%, 0);
+    width: 615px;
 }
 
 label {
@@ -354,4 +356,8 @@ button {
     top: -20px;
     width: 130px;
     z-index: 5;
+}
+
+.center {
+    text-align: center;
 }
