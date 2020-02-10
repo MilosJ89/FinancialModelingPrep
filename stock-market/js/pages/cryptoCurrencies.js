@@ -6,6 +6,9 @@
  * @author Milos Jovanovic
  */
 
+// import {sortCryptoCurrenciesPerPrice, sortCryptoCurrenciesPerChanges} from '../utility';
+import {sort} from '../utility';
+
 /**
  * @type {object[]}
  * 
@@ -22,8 +25,8 @@ const arrayCryptoCurrencies = [];
 export const headerCryptoCurrencies = [
     { field: 'ticker', title: 'Ticker'},
     { field: 'name', title: 'Name', class: 'bold' },
-    { field: 'price', title: 'Price', clickHandler: 'sortCryptoCurrenciesPerPrice' },
-    { field: 'changes', title: 'Changes', clickHandler: 'sortCryptoCurrenciesPerChanges'}
+    { field: 'price', title: 'Price', clickHandler: sort.bind(null, 'cryptoCurrencies', 'price') },
+    { field: 'changes', title: 'Changes', clickHandler: sort.bind(null, 'cryptoCurrencies', 'changes') }
 ]
 
 /**

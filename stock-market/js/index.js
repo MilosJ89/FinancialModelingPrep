@@ -21,10 +21,15 @@ import * as majorIndex from './components/majorIndex';
 document.body.addEventListener('load', clock());
 document.body.addEventListener('load', majorIndex.createMajorIndexes);
 document.getElementById('openHome').addEventListener('click', home.openHome);
-document.getElementById('openCompanies').addEventListener('click', openCompanies.bind(null));
-document.getElementById('openCryptoCurrencies').addEventListener('click', openCryptoCurrencies.bind(null));
-document.getElementById('openCurrencies').addEventListener('click', openCurrencies.bind(null));
 document.getElementById('logo').addEventListener('click', home.openHome);
+document.getElementById('openCompanies').addEventListener('click', open.bind(null, 'companies'));
+document.getElementById('openCryptoCurrencies').addEventListener('click', open.bind(null, 'cryptoCurrencies'));
+document.getElementById('openCurrencies').addEventListener('click', open.bind(null, 'currencies'));
+
+/**
+ * Const for content of pages
+ */
+const content = document.getElementById('content');
 
 /**
  * Change active buttons by open page
@@ -81,42 +86,31 @@ function clock() {
 }
 
 /**
- * Open page with companies when click on tab companies in sidebar
+ * Open pages when click on tab in sidebar
  */
-function openCompanies() {
+function open(tab) {
     content.innerHTML = '';
-
     table.createTable();
 
-    companies.companies()
-        .then(table.createHeader.bind(null, companies.headerCompanies))
-        .then(companies.createContentCompanies.bind(null));
-}
-
-/**
- * Open page with crypto currencies when click on tab crypto currencies in sidebar
- */
-function openCryptoCurrencies() {
-    content.innerHTML = '';
-
-    table.createTable();
-
-    cryptoCurrencies.cryptoCurrencies()
-        .then(table.createHeader.bind(null, cryptoCurrencies.headerCryptoCurrencies))
-        .then(cryptoCurrencies.createContentCryptoCurrrencies);
-}
-
-/**
- * Open page with currencies when click on tab currencies in sidebar
- */
-function openCurrencies() {
-    content.innerHTML = '';
-
-    table.createTable();
-
-    currencies.currencies()
-        .then(table.createHeader.bind(null, currencies.headerCurrencies))
-        .then(currencies.createContentCurrencies);
-    
-    currencies.createFormConverter();
+    switch(tab) {
+        case 'companies':
+            companies.companies()
+                .then(table.createHeader.bind(null, companies.headerCompanies))
+                .then(companies.createContentCompanies.bind(null));
+            break;
+        case 'cryptoCurrencies':
+            cryptoCurrencies.cryptoCurrencies()
+                .then(table.createHeader.bind(null, cryptoCurrencies.headerCryptoCurrencies))
+                .then(cryptoCurrencies.createContentCryptoCurrrencies);      
+            break;
+        case 'currencies':
+            currencies.currencies()
+                .then(table.createHeader.bind(null, currencies.headerCurrencies))
+                .then(currencies.createContentCurrencies);
+            
+            currencies.createFormConverter();
+            break;
+        default:
+            break;
+    }
 }

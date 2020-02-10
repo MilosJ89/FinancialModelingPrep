@@ -6,6 +6,7 @@
  * @author Milos Jovanovic 
  */
 
+import {sort} from '../utility';
 
 /**
  * Get information of companies by api
@@ -19,15 +20,12 @@ let arrayCompanies = [];
  * 
  * @type {object[]}
  */
-
-import {sortCompaniesPerPrice, sortCompaniesPerChanges, sortCompaniesPerChangesPercentage} from '../utility';
-
 export const headerCompanies = [ 
     { field: 'image', title: ''},
     { field: 'companyName', title: 'Company', class: 'bold'},
-    { field: 'price', title: 'Price', clickHandler: sortCompaniesPerPrice},
-    { field: 'changes', title: 'Changes', clickHandler: sortCompaniesPerChanges},
-    { field: 'changesPercentage', title: 'Changes %', clickHandler: sortCompaniesPerChangesPercentage},
+    { field: 'price', title: 'Price', clickHandler: sort.bind(null, 'companies', 'price')},
+    { field: 'changes', title: 'Changes', clickHandler: sort.bind(null, 'companies', 'changes')},
+    { field: 'changesPercentage', title: 'Changes %', clickHandler: sort.bind(null, 'companies', 'changesPercentage')},
     { field: 'website', title: 'Website'}
 ];
 
@@ -94,14 +92,29 @@ export function createContentCompanies() {
  * Return array with sorted companies
  * @returns {object[]}
  */
-export function sortedCompanies(field) {
-    
-    const sortCompanies = arrayCompanies.sort(function(c1, c2) {
-        if(c1.profile[field] < c2.profile[field]) {
-            return 1;
-        } else {
-            return -1;
-        }
-    })
-    return sortCompanies;
-}
+// export function sortedCompanies(field) {
+//     // debugger
+//     const sortCompanies = arrayCompanies.sort(function(c1, c2) {
+//         // let a;
+//         if (+c1.profile[field].replace(/[()|%|+]/g, '') < +c2.profile[field].replace(/[()|%|+]/g, '')) {
+//             return  1;
+//         } else {
+//             return -1;
+//         }
+//     }) 
+//     return sortCompanies;
+// }
+
+
+// export function sortedCompanies(field) {
+//     const sortCompanies = arrayCompanies.sort(function(c1, c2) {
+//         if (+c1.profile.changesPercentage.replace(/[()|%|+]/g, '') < +c2.profile.changesPercentage.replace(/[()|%|+]/g, '')) {
+//             return 1;
+//         } else if(c1.profile[field] < c2.profile[field]) {
+//             return 1;
+//         } else {
+//             return -1;
+//         }
+//     })
+//     return sortCompanies;
+// }
