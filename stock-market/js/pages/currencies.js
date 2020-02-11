@@ -48,7 +48,7 @@ let forexEur = [];
  * @type {object[]}
  */
 export const headerCurrencies = [
-    { field: 'country', title: 'Country'},
+    { field: 'country', title: 'Country' },
     { field: 'currency', title: 'Currency' },
     { field: 'rates', title: 'Exchange' },
 ]
@@ -57,31 +57,39 @@ export const headerCurrencies = [
  * Create content table of currencies
  */
 export function createContentCurrencies() {
-    for(let currency in arrayCurrencies) {
+    for (let currency in arrayCurrencies) {
         let item = `<div id='item' class='items'></div>`;
         document.getElementById('contentTable').innerHTML += item;
 
-            for(let field of headerCurrencies) {
-                let cell = `<div class='${field.field} cell'></div>`;
-                document.getElementsByClassName('items')[currency].innerHTML += cell;
+        for (let field of headerCurrencies) {
+            let cell = `<div class='${field.field} cell'></div>`;
+            document.getElementsByClassName('items')[currency].innerHTML += cell;
 
-                if(field.field === 'country') {
-                    let img = `<img id='${arrayCurrencies[currency]}' onmouseover='${currencyInfo.bind(null, arrayCurrencies[currency])}' src='${'../../img/countries/'}${arrayCurrencies[currency]}.png'></img>`;
+            if (field.field === 'country') {
+                let img = `<img id='${arrayCurrencies[currency]}' src='${'../../img/countries/'}${arrayCurrencies[currency]}.png'></img>`;
+
+                let myFirstPromise = new Promise((resolve, reject) => {
                     document.getElementsByClassName(field.field)[currency].innerHTML += img;
-                    
-                    let flagInfo = `<div id='${arrayCurrencies[currency]}1' class='flagInfo'></div>`;
-                    document.getElementsByClassName(field.field)[currency].innerHTML += flagInfo;
-                }
+                    resolve();
+                });
 
-                if(field.field === 'currency') {
-                    document.getElementsByClassName(field.field)[currency].innerHTML += arrayCurrencies[currency];   
-                }
+                myFirstPromise.then(res => {
+                    const image = document.getElementById(arrayCurrencies[currency]);
 
-                if(field.field === 'rates') {
-                    document.getElementsByClassName(field.field)[currency].innerHTML += forexEur.rates[arrayCurrencies[currency]].toFixed(2);
-                }
-
+                    image.addEventListener('mouseover', currencyInfo.bind(null, arrayCurrencies[currency]));
+                    image.addEventListener('mouseout', currencyInfoOut.bind(null, arrayCurrencies[currency]));
+                });
             }
+
+            if (field.field === 'currency') {
+                document.getElementsByClassName(field.field)[currency].innerHTML += arrayCurrencies[currency];
+            }
+
+            if (field.field === 'rates') {
+                document.getElementsByClassName(field.field)[currency].innerHTML += forexEur.rates[arrayCurrencies[currency]].toFixed(2);
+            }
+
+        }
     }
 }
 
@@ -92,7 +100,7 @@ function createOptionElement(value) {
 /**
  * Create converter for convert one currency to another currency
  */
-export function createFormConverter () {
+export function createFormConverter() {
     let hello = `
         <div id='form' class='form'>
             <label>Amount:</label>
@@ -143,18 +151,18 @@ export async function currencies() {
 /**
  * Visibility information name of curencies when mouseover across flag in table
  * 
+ * TODO: replace append child and create element with innerHTML
+ * 
  * @param {string} currency 
  */
 function currencyInfo(currency) {
-    let flagInfo = document.getElementById(`${currency}1`);
-        flagInfo.style.padding = '5px';
-        flagInfo.style.display = 'block';
-
-    for(let field of headerCurrencies) {
-        if(field.field === 'country') {
-            flagInfo.innerHTML = countries[currency];
-        }
-    }
+    let flagInfo = document.createElement('div');
+    flagInfo.setAttribute('class', 'flagInfo');
+    flagInfo.setAttribute('id', `${currency}-info`);
+    flagInfo.innerHTML = countries[currency];
+    
+    const currencyIndex = arrayCurrencies.findIndex(res => res === currency);
+    document.getElementsByClassName('country')[currencyIndex].appendChild(flagInfo);
 }
 
 /**
@@ -163,7 +171,5 @@ function currencyInfo(currency) {
  * @param {string} currency 
  */
 function currencyInfoOut(currency) {
-    let flagInfo = document.getElementById(currency);
-
-    flagInfo.style.display = 'none';
+    document.getElementById(`${currency}-info`).remove();
 }

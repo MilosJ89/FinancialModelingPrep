@@ -342,7 +342,7 @@ button {
 }
 
 /*** Flag ***/
-#country {
+.country {
     position: relative;
 }
 
@@ -350,10 +350,11 @@ button {
     background-color: #183c85;
     color:white;
     font-size: 14px;
-    left: -20px;
+    left: 90%;
     position: absolute;
     text-align: center;
-    top: -20px;
+    top: 30px;
+    transform: translate(-50%, -50%);
     width: 130px;
     z-index: 5;
 }

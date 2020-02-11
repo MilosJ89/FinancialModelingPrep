@@ -92,29 +92,17 @@ export function createContentCompanies() {
  * Return array with sorted companies
  * @returns {object[]}
  */
-// export function sortedCompanies(field) {
-//     // debugger
-//     const sortCompanies = arrayCompanies.sort(function(c1, c2) {
-//         // let a;
-//         if (+c1.profile[field].replace(/[()|%|+]/g, '') < +c2.profile[field].replace(/[()|%|+]/g, '')) {
-//             return  1;
-//         } else {
-//             return -1;
-//         }
-//     }) 
-//     return sortCompanies;
-// }
-
-
-// export function sortedCompanies(field) {
-//     const sortCompanies = arrayCompanies.sort(function(c1, c2) {
-//         if (+c1.profile.changesPercentage.replace(/[()|%|+]/g, '') < +c2.profile.changesPercentage.replace(/[()|%|+]/g, '')) {
-//             return 1;
-//         } else if(c1.profile[field] < c2.profile[field]) {
-//             return 1;
-//         } else {
-//             return -1;
-//         }
-//     })
-//     return sortCompanies;
-// }
+export function sortedCompanies(field) {
+    const sortCompanies = arrayCompanies.sort(function(c1, c2) {
+        let a;
+        if (field === 'changesPercentage' && +(c1.profile[field].replace(/[()|%]/g, '')) < +(c2.profile[field].replace(/[()|%]/g, ''))) {
+            a = 1;
+        } else if (c1.profile[field] < c2.profile[field]) {
+            a = 1;
+        } else {
+            a = -1;
+        }
+        return a;
+    }) 
+    return sortCompanies;
+}
