@@ -54,9 +54,38 @@ export const headerCurrencies = [
 ]
 
 /**
+ * Function for mouseover and mouseout at flag of countries
+ * 
+ * @param {string} currency 
+ */
+function attachEvent(currency) {
+    const image = document.getElementById(arrayCurrencies[currency]);
+
+    image.addEventListener('mouseover', currencyInfo.bind(null, arrayCurrencies[currency]));
+    image.addEventListener('mouseout', currencyInfoOut.bind(null, arrayCurrencies[currency]));
+}
+
+/**
+ * Function for convert one currency to another currency
+ */
+async function convertCurrencies() {
+    let from = document.getElementById('selectFrom');
+    let to = document.getElementById('selectTo');
+    let amount = document.getElementById('amount');
+    let resultConvert = document.getElementById('resultConvert');
+
+    let baseUrl = 'https://api.exchangerate-api.com/v4/latest/';
+    let currencyFrom = await fetch(baseUrl + from.value);
+    currencyFrom = await currencyFrom.json();
+    resultConvert.innerHTML = (currencyFrom.rates[to.value] * amount.value).toFixed(2) + ' ' + to.value;
+}
+
+/**
  * Create content table of currencies
  */
 export function createContentCurrencies() {
+    document.getElementById('contentTable').setAttribute('class', 'tableId');
+
     for (let currency in arrayCurrencies) {
         let item = `<div id='item' class='items'></div>`;
         document.getElementById('contentTable').innerHTML += item;
@@ -73,12 +102,7 @@ export function createContentCurrencies() {
                     resolve();
                 });
 
-                myFirstPromise.then(res => {
-                    const image = document.getElementById(arrayCurrencies[currency]);
-
-                    image.addEventListener('mouseover', currencyInfo.bind(null, arrayCurrencies[currency]));
-                    image.addEventListener('mouseout', currencyInfoOut.bind(null, arrayCurrencies[currency]));
-                });
+                myFirstPromise.then(attachEvent.bind(null, currency));
             }
 
             if (field.field === 'currency') {
@@ -91,10 +115,6 @@ export function createContentCurrencies() {
 
         }
     }
-}
-
-function createOptionElement(value) {
-    return `<option>${value}</option>`;
 }
 
 /**
@@ -122,20 +142,13 @@ export function createFormConverter() {
 
     document.getElementById('convert').addEventListener('click', convertCurrencies);
 }
-
 /**
- * Function for convert one currency to another currency
+ * Function for create dropdown of currencies in converter currencies
+ * 
+ * @param {string} value 
  */
-async function convertCurrencies() {
-    let from = document.getElementById('selectFrom');
-    let to = document.getElementById('selectTo');
-    let amount = document.getElementById('amount');
-    let resultConvert = document.getElementById('resultConvert');
-
-    let baseUrl = 'https://api.exchangerate-api.com/v4/latest/';
-    let currencyFrom = await fetch(baseUrl + from.value);
-    currencyFrom = await currencyFrom.json();
-    resultConvert.innerHTML = (currencyFrom.rates[to.value] * amount.value).toFixed(2) + ' ' + to.value;
+function createOptionElement(value) {
+    return `<option>${value}</option>`;
 }
 
 /**
@@ -160,8 +173,9 @@ function currencyInfo(currency) {
     flagInfo.setAttribute('class', 'flagInfo');
     flagInfo.setAttribute('id', `${currency}-info`);
     flagInfo.innerHTML = countries[currency];
-    
-    const currencyIndex = arrayCurrencies.findIndex(res => res === currency);
+
+    const currencyIndex = arrayCurrencies.findIndex(getCurrency.bind(null, currency));
+
     document.getElementsByClassName('country')[currencyIndex].appendChild(flagInfo);
 }
 
@@ -172,4 +186,14 @@ function currencyInfo(currency) {
  */
 function currencyInfoOut(currency) {
     document.getElementById(`${currency}-info`).remove();
+}
+
+/**
+ * Function for compare currency in array arrayCurrencies 
+ * 
+ * @param {string} currency 
+ * @param {string[]} arrElement 
+ */
+function getCurrency(currency, arrElement) {
+    return currency === arrElement;
 }

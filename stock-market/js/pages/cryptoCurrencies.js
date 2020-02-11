@@ -33,6 +33,8 @@ export const headerCryptoCurrencies = [
  * Function for create content table of crypto currencies
  */
 export function createContentCryptoCurrrencies() {
+    document.getElementById('contentTable').setAttribute('class', 'tableId');
+
     for(let crypto in arrayCryptoCurrencies) {
         let item = `<div id='item' class='items'></div>`;
         document.getElementById('contentTable').innerHTML += item;

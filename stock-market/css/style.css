@@ -191,7 +191,7 @@ ul {
     width: 200px;
 }
 
-#contentTable {
+.tableId {
     height: 70vh;
     overflow-y: scroll;
 }

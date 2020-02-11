@@ -51,6 +51,8 @@ export async function companies() {
  * Create content table of companies
  */
 export function createContentCompanies() {
+    document.getElementById('contentTable').setAttribute('class', 'tableId');
+
     for(let company in arrayCompanies) {
 
         let item = `<div id='item' class='items'></div>`;
