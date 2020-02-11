@@ -52,6 +52,7 @@ export function createContentCryptoCurrrencies() {
             }
 
             if(field.field === 'changes') {
+                document.getElementsByClassName(field.field)[crypto].innerHTML = `${arrayCryptoCurrencies[crypto][field.field]} $`
                 document.getElementsByClassName(field.field)[crypto].classList.add(`${arrayCryptoCurrencies[crypto].changes > 0 ? 'green' : arrayCryptoCurrencies[crypto].changes === 0 ? 'neutral' : 'red'}`);
             }
         }

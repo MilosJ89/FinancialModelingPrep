@@ -192,7 +192,8 @@ ul {
 }
 
 .tableId {
-    height: 70vh;
+    height: 100%;
+    max-height: 70vh;
     overflow-y: scroll;
 }
 
@@ -251,38 +252,6 @@ img {
 .ticker {
     padding-left: 30px;
 }
-
-/*
-th {
-    border-bottom: 2px solid gray;
-    cursor: pointer;
-    font-size: 18px;
-    margin: 0 5px;
-    padding: 10px;
-    padding-left: 30px;
-    position: relative;
-    text-align: left;
-}
-
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-td {
-    border-bottom: 1px solid gray;
-    padding: 10px 20px;
-    text-align: left;
-}
-
-
-a {
-    color: #183c85;
-    text-decoration: none;
-}
-
-a:hover {
-    color: gray;
-} */
 
 /*** Converter ***/
 .form {
@@ -353,7 +322,7 @@ button {
     left: 90%;
     position: absolute;
     text-align: center;
-    top: 30px;
+    top: 5px;
     transform: translate(-50%, -50%);
     width: 130px;
     z-index: 5;
