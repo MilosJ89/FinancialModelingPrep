@@ -40,7 +40,7 @@ const countries = {
  * 
  * @type {object[]}
  */
-let forexEur = [];
+// let forexEur = [];
 
 /**
  * Array of header currencies with fields and titles
@@ -63,6 +63,7 @@ function attachEvent(currency) {
 
     image.addEventListener('mouseover', currencyInfo.bind(null, arrayCurrencies[currency]));
     image.addEventListener('mouseout', currencyInfoOut.bind(null, arrayCurrencies[currency]));
+    image.addEventListener('click', getCurrencies.bind(null, arrayCurrencies[currency]));
 }
 
 /**
@@ -110,7 +111,7 @@ export function createContentCurrencies() {
             }
 
             if (field.field === 'rates') {
-                document.getElementsByClassName(field.field)[currency].innerHTML += forexEur.rates[arrayCurrencies[currency]].toFixed(2);
+                document.getElementsByClassName(field.field)[currency].innerHTML += forexCurrency[0].rates[arrayCurrencies[currency]].toFixed(2);
             }
 
         }
@@ -154,12 +155,35 @@ function createOptionElement(value) {
 /**
  * Create array with currencies information for currency euro
  */
+const forexCurrency = [];
+
 export async function currencies() {
+    let forex = [];
     let baseUrl = 'https://api.exchangerate-api.com/v4/latest/'
-    forexEur = await fetch(baseUrl + 'eur');
-    forexEur = await forexEur.json();
+    
+    for (let currency of arrayCurrencies) {
+        forex = await fetch(baseUrl + currency);
+        forex = await forex.json();
+        forexCurrency.push(forex);
+    }
 }
 
+/**
+ * Function for change currenies table when click at flag of currencies
+ * 
+ * @param {string} currency 
+ */
+function getCurrencies(currency) {
+    
+    const valuta = forexCurrency.find((res) => {
+        return res.base === currency;
+    });
+
+    for (let index in arrayCurrencies) {
+        document.getElementsByClassName('rates')[index].innerHTML = '';    
+        document.getElementsByClassName('rates')[index].innerHTML += valuta.rates[arrayCurrencies[index]].toFixed(2);
+    }
+}
 
 /**
  * Visibility information name of curencies when mouseover across flag in table
